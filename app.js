@@ -61,7 +61,7 @@ const products = [
     name: "YX10",
     category: "escavatori",
     label: "Mini escavatore",
-    image: "assets/sheet-yx10.jpg",
+    image: "assets/sheet-yx10-correct.png",
     description: "Mini escavatore leggero per piccoli scavi, manutenzione esterna, giardinaggio e lavori in spazi ridotti.",
     specs: {
       Peso: "800 kg",
