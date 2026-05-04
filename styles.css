@@ -260,7 +260,7 @@ textarea {
 
 .hero-machine-stack {
   position: relative;
-  width: min(100%, 820px);
+  width: min(100%, 880px);
   min-height: 690px;
 }
 
@@ -273,58 +273,31 @@ textarea {
 
 .hero-machine-crane {
   position: absolute;
-  left: -1%;
+  left: -3%;
   bottom: 7%;
-  width: 34%;
+  width: 39%;
   max-height: 650px;
 }
 
 .hero-machine-excavator {
   position: absolute;
-  left: 34%;
+  left: 31%;
   bottom: 7%;
-  width: 37%;
+  width: 43%;
   max-height: 560px;
 }
 
 .hero-machine-loader {
   position: absolute;
-  right: -1%;
+  right: -4%;
   bottom: 8%;
-  width: 35%;
+  width: 40%;
   max-height: 500px;
 }
 
 .hero-visual img {
   max-width: 100%;
   object-fit: contain;
-}
-
-.hero-visual-note {
-  position: absolute;
-  right: 2%;
-  bottom: 13%;
-  z-index: 3;
-  display: grid;
-  gap: 2px;
-  min-width: 176px;
-  padding: 16px 18px;
-  color: var(--white);
-  background: rgba(16, 18, 22, 0.92);
-  border-left: 4px solid var(--red);
-  border-radius: 6px;
-  box-shadow: 0 22px 52px rgba(16, 18, 22, 0.22);
-}
-
-.hero-visual-note strong {
-  font-weight: 900;
-}
-
-.hero-visual-note span {
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 13px;
-  font-weight: 800;
-  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -436,7 +409,7 @@ h3 {
   min-height: 142px;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 24px;
   background:
     radial-gradient(circle at 86% 18%, rgba(210, 10, 17, 0.08), transparent 32%),
@@ -490,6 +463,10 @@ h3 {
   padding: clamp(72px, 10vw, 132px) clamp(18px, 4vw, 56px);
 }
 
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 .section-inner {
   width: min(1220px, 100%);
   margin: 0 auto;
@@ -518,8 +495,6 @@ h3 {
 .section-heading p,
 .onsite-copy p,
 .quote-copy,
-.process-copy p,
-.process-section .split > p,
 .markets-layout p {
   color: var(--muted);
   font-size: 17px;
@@ -560,8 +535,7 @@ h3 {
 .category-card::after,
 .product-card::after,
 .assurance-item::after,
-.support-card::after,
-.process-list li::after {
+.support-card::after {
   content: "";
   position: absolute;
   inset: -80px auto -80px -45%;
@@ -577,8 +551,7 @@ h3 {
 .audience-grid article:hover,
 .category-card:hover,
 .assurance-item:hover,
-.support-card:hover,
-.process-list li:hover {
+.support-card:hover {
   transform: translateY(-7px);
   border-color: rgba(210, 10, 17, 0.22);
   box-shadow: var(--premium-shadow);
@@ -590,8 +563,7 @@ h3 {
 .category-card:hover::after,
 .product-card:hover::after,
 .assurance-item:hover::after,
-.support-card:hover::after,
-.process-list li:hover::after {
+.support-card:hover::after {
   transform: skewX(-18deg) translateX(520%);
 }
 
@@ -870,8 +842,8 @@ h3 {
 
 .support-card {
   position: relative;
-  min-height: 260px;
-  overflow: hidden;
+  min-height: 300px;
+  overflow: visible;
   padding: 24px;
   background:
     radial-gradient(circle at 82% 18%, rgba(210, 10, 17, 0.12), transparent 34%),
@@ -889,7 +861,7 @@ h3 {
 
 .support-card h3 {
   margin: 12px 0 12px;
-  font-size: 32px;
+  font-size: clamp(27px, 2.6vw, 32px);
 }
 
 .support-card p {
@@ -945,8 +917,7 @@ h3 {
 .product-card::before,
 .value-card::before,
 .audience-grid article::before,
-.assurance-item::before,
-.process-list li::before {
+.assurance-item::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -965,8 +936,7 @@ h3 {
 .product-card:hover::before,
 .value-card:hover::before,
 .audience-grid article:hover::before,
-.assurance-item:hover::before,
-.process-list li:hover::before {
+.assurance-item:hover::before {
   opacity: 1;
 }
 
@@ -1327,6 +1297,20 @@ h3 {
     linear-gradient(120deg, transparent 0 75%, rgba(16, 18, 22, 0.045) 75% 75.35%, transparent 75.35%);
 }
 
+.map-logo {
+  position: absolute;
+  top: clamp(14px, 2vw, 22px);
+  right: clamp(14px, 2vw, 22px);
+  z-index: 2;
+  width: clamp(34px, 4.2vw, 50px);
+  height: auto;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(16, 18, 22, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 12px 28px rgba(18, 23, 30, 0.1);
+}
+
 .map-legend,
 .world-map,
 .map-markets {
@@ -1497,134 +1481,6 @@ h3 {
   border-color: rgba(16, 18, 22, 0.1);
   font-size: 12px;
   letter-spacing: 0.02em;
-}
-
-.process-section {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(210, 10, 17, 0.08), transparent 28%),
-    linear-gradient(180deg, #ffffff 0%, #eef2f6 100%);
-}
-
-.process-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(118deg, transparent 0 58%, rgba(16, 18, 22, 0.045) 58% 58.45%, transparent 58.45%),
-    linear-gradient(118deg, transparent 0 66%, rgba(210, 10, 17, 0.08) 66% 66.55%, transparent 66.55%);
-}
-
-.process-inner {
-  position: relative;
-  z-index: 1;
-}
-
-.process-panel {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
-  align-items: center;
-  overflow: hidden;
-  margin-bottom: 18px;
-  padding: clamp(30px, 5vw, 58px);
-  color: var(--white);
-  border-radius: var(--radius);
-  background:
-    radial-gradient(circle at 78% 24%, rgba(210, 10, 17, 0.36), transparent 32%),
-    linear-gradient(135deg, #191d24 0%, #0b0d10 100%);
-  box-shadow: var(--premium-shadow);
-}
-
-.process-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(115deg, transparent 0 52%, rgba(255, 255, 255, 0.07) 52% 52.4%, transparent 52.4%),
-    linear-gradient(115deg, transparent 0 64%, rgba(210, 10, 17, 0.2) 64% 64.7%, transparent 64.7%);
-}
-
-.process-copy,
-.process-copy > * {
-  position: relative;
-  z-index: 1;
-}
-
-.process-copy .eyebrow.dark {
-  color: #ff767b;
-}
-
-.process-copy h2 {
-  max-width: 760px;
-  margin-bottom: 26px;
-  color: var(--white);
-}
-
-.process-copy p {
-  max-width: 820px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.74);
-}
-
-.process-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.process-list li {
-  position: relative;
-  min-height: 260px;
-  overflow: hidden;
-  padding: 26px;
-  background:
-    radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(210, 10, 17, 0.1), transparent 35%),
-    rgba(255, 255, 255, 0.86);
-  border: 1px solid rgba(16, 18, 22, 0.08);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 42px rgba(18, 23, 30, 0.08);
-  transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
-}
-
-.process-list li > * {
-  position: relative;
-  z-index: 1;
-}
-
-.process-number {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 28px;
-  color: var(--red);
-  border: 1px solid rgba(210, 10, 17, 0.22);
-  border-radius: 50%;
-  background: rgba(210, 10, 17, 0.08);
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.process-list strong {
-  display: block;
-  margin-bottom: 18px;
-  color: var(--ink);
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 34px;
-  line-height: 1;
-}
-
-.process-list li > span:not(.process-number) {
-  color: var(--muted);
-  line-height: 1.65;
 }
 
 .quote-section {
@@ -2061,8 +1917,7 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 .value-card.reveal.in-view:hover,
 .audience-grid article.reveal.in-view:hover,
 .category-card.reveal.in-view:hover,
-.assurance-item.reveal.in-view:hover,
-.process-list li.reveal.in-view:hover {
+.assurance-item.reveal.in-view:hover {
   transform: translateY(-7px);
 }
 
@@ -2105,7 +1960,6 @@ body.has-mobile-lead-bar .mobile-lead-bar {
   .assurance-layout,
   .onsite-layout,
   .markets-layout,
-  .process-panel,
   .reseller-panel,
   .support-layout,
   .modal-card {
@@ -2131,10 +1985,6 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 
   .conversion-strip > div {
     justify-self: stretch;
-  }
-
-  .process-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .onsite-photo,
@@ -2275,7 +2125,6 @@ body.has-mobile-lead-bar .mobile-lead-bar {
   .sourcing-grid,
   .audience-grid,
   .support-grid,
-  .process-list,
   .modal-copy dl,
   .site-footer {
     grid-template-columns: 1fr;
@@ -2347,14 +2196,9 @@ body.has-mobile-lead-bar .mobile-lead-bar {
     padding-bottom: 42px;
   }
 
-  .assurance-item,
-  .process-list li {
+  .assurance-item {
     min-height: auto;
     padding: 22px;
-  }
-
-  .process-panel {
-    padding: 26px 20px;
   }
 
   .conversion-strip {
