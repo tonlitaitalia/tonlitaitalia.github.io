@@ -778,7 +778,7 @@ function observeReveals() {
 
 function wirePremiumHover() {
   const premiumElements = document.querySelectorAll(
-    ".proof-item:not(.is-hover-wired), .value-card:not(.is-hover-wired), .audience-grid article:not(.is-hover-wired), .category-card:not(.is-hover-wired), .product-card:not(.is-hover-wired), .assurance-item:not(.is-hover-wired), .process-list li:not(.is-hover-wired)"
+    ".proof-item:not(.is-hover-wired), .value-card:not(.is-hover-wired), .audience-grid article:not(.is-hover-wired), .category-card:not(.is-hover-wired), .product-card:not(.is-hover-wired), .assurance-item:not(.is-hover-wired), .support-card:not(.is-hover-wired), .process-list li:not(.is-hover-wired)"
   );
 
   premiumElements.forEach((element) => {

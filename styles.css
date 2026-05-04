@@ -249,10 +249,10 @@ textarea {
 .hero-visual::before {
   content: "";
   position: absolute;
-  right: 4%;
-  bottom: 9%;
-  width: 74%;
-  height: 58%;
+  right: 1%;
+  bottom: 8%;
+  width: 86%;
+  height: 48%;
   background: rgba(16, 18, 22, 0.08);
   border-radius: 50%;
   filter: blur(12px);
@@ -260,7 +260,7 @@ textarea {
 
 .hero-machine-stack {
   position: relative;
-  width: min(100%, 740px);
+  width: min(100%, 820px);
   min-height: 690px;
 }
 
@@ -273,25 +273,25 @@ textarea {
 
 .hero-machine-crane {
   position: absolute;
-  left: -2%;
-  bottom: 4%;
-  width: 42%;
+  left: -1%;
+  bottom: 7%;
+  width: 34%;
   max-height: 650px;
 }
 
 .hero-machine-excavator {
   position: absolute;
-  left: 26%;
-  bottom: 5%;
-  width: 49%;
+  left: 34%;
+  bottom: 7%;
+  width: 37%;
   max-height: 560px;
 }
 
 .hero-machine-loader {
   position: absolute;
-  right: -2%;
-  bottom: 10%;
-  width: 42%;
+  right: -1%;
+  bottom: 8%;
+  width: 35%;
   max-height: 500px;
 }
 
@@ -302,8 +302,8 @@ textarea {
 
 .hero-visual-note {
   position: absolute;
-  right: 4%;
-  bottom: 12%;
+  right: 2%;
+  bottom: 13%;
   z-index: 3;
   display: grid;
   gap: 2px;
@@ -533,7 +533,7 @@ h3 {
 
 .proof-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   width: min(1220px, 100%);
   margin: 0 auto;
@@ -560,6 +560,7 @@ h3 {
 .category-card::after,
 .product-card::after,
 .assurance-item::after,
+.support-card::after,
 .process-list li::after {
   content: "";
   position: absolute;
@@ -576,6 +577,7 @@ h3 {
 .audience-grid article:hover,
 .category-card:hover,
 .assurance-item:hover,
+.support-card:hover,
 .process-list li:hover {
   transform: translateY(-7px);
   border-color: rgba(210, 10, 17, 0.22);
@@ -588,6 +590,7 @@ h3 {
 .category-card:hover::after,
 .product-card:hover::after,
 .assurance-item:hover::after,
+.support-card:hover::after,
 .process-list li:hover::after {
   transform: skewX(-18deg) translateX(520%);
 }
@@ -844,6 +847,56 @@ h3 {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
+}
+
+.support-section {
+  background:
+    linear-gradient(115deg, transparent 0 70%, rgba(210, 10, 17, 0.07) 70% 70.4%, transparent 70.4%),
+    linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%);
+}
+
+.support-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.05fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: start;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.support-card {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(210, 10, 17, 0.12), transparent 34%),
+    linear-gradient(145deg, #ffffff 0%, #f1f4f8 100%);
+  border: 1px solid rgba(16, 18, 22, 0.08);
+  border-radius: var(--radius);
+  box-shadow: 0 16px 42px rgba(18, 23, 30, 0.08);
+  transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
+}
+
+.support-card span {
+  color: var(--red);
+  font-weight: 900;
+}
+
+.support-card h3 {
+  margin: 12px 0 12px;
+  font-size: 32px;
+}
+
+.support-card p {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  line-height: 1.62;
 }
 
 .filter-bar {
@@ -2054,6 +2107,7 @@ body.has-mobile-lead-bar .mobile-lead-bar {
   .markets-layout,
   .process-panel,
   .reseller-panel,
+  .support-layout,
   .modal-card {
     grid-template-columns: 1fr;
   }
@@ -2066,7 +2120,8 @@ body.has-mobile-lead-bar .mobile-lead-bar {
   .product-grid,
   .proof-grid,
   .sourcing-grid,
-  .audience-grid {
+  .audience-grid,
+  .support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2219,6 +2274,7 @@ body.has-mobile-lead-bar .mobile-lead-bar {
   .proof-grid,
   .sourcing-grid,
   .audience-grid,
+  .support-grid,
   .process-list,
   .modal-copy dl,
   .site-footer {
