@@ -261,11 +261,12 @@ textarea {
 .hero-machine-stack {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(130px, 0.78fr) minmax(190px, 1.05fr) minmax(170px, 0.95fr);
-  gap: clamp(18px, 3vw, 36px);
+  grid-template-columns: minmax(150px, 0.82fr) minmax(220px, 1.08fr) minmax(200px, 1fr);
+  gap: clamp(18px, 2.5vw, 32px);
   align-items: end;
-  width: min(100%, 900px);
-  min-height: 690px;
+  width: min(112%, 1040px);
+  min-height: 720px;
+  transform: translateX(2%);
 }
 
 .hero-machine {
@@ -280,19 +281,19 @@ textarea {
 .hero-machine-crane {
   grid-column: 1;
   align-self: end;
-  max-height: 650px;
+  max-height: 730px;
 }
 
 .hero-machine-excavator {
   grid-column: 2;
   align-self: end;
-  max-height: 560px;
+  max-height: 635px;
 }
 
 .hero-machine-loader {
   grid-column: 3;
   align-self: end;
-  max-height: 500px;
+  max-height: 580px;
 }
 
 .hero-visual img {
