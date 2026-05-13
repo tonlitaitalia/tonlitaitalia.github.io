@@ -733,6 +733,18 @@ function renderRealPhotos(product) {
 
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+const mobileModalQuery = window.matchMedia("(max-width: 700px)");
+
+function scrollModalImageToTop() {
+  if (!mobileModalQuery.matches || !modalCard) return;
+
+  window.requestAnimationFrame(() => {
+    modalCard.scrollTo({
+      top: 0,
+      behavior: reducedMotionQuery.matches ? "auto" : "smooth",
+    });
+  });
+}
 
 function closeModal() {
   modal.classList.remove("is-open");
@@ -963,6 +975,7 @@ document.addEventListener("click", (event) => {
       .forEach((button) => button.classList.toggle("is-active", button === modalImageButton || button.dataset.modalLabel === selectedLabel));
     modalActiveImage.src = modalImageButton.dataset.modalImage;
     modalActiveImage.alt = `${modalImageButton.dataset.modalLabel} TONLITA`;
+    scrollModalImageToTop();
     wirePremiumHover();
   }
 
