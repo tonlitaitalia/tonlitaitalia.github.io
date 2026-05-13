@@ -2029,7 +2029,7 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 
 @media (max-width: 700px) {
   .site-header {
-    grid-template-columns: auto minmax(0, 1fr) 66px;
+    grid-template-columns: auto minmax(0, 1fr) 54px;
     gap: 8px;
     min-height: 68px;
     padding: 12px;
@@ -2314,13 +2314,18 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 
   .modal {
     align-items: stretch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 8px;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-card {
     display: flex;
     flex-direction: column;
-    max-height: calc(100dvh - 16px);
+    min-height: calc(100dvh - 16px);
+    max-height: none;
+    overflow: visible;
     border-radius: 8px;
   }
 
@@ -2347,17 +2352,22 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 
   .modal-media {
     order: 1;
-    min-height: 430px;
-    height: 62dvh;
+    min-height: 0;
+    height: auto;
     max-height: none;
     padding: 8px;
+    contain: layout paint;
   }
 
   .modal-media img {
     width: 100%;
-    height: 100%;
+    height: auto;
     max-height: none;
     object-fit: contain;
+    box-shadow: none;
+    animation: none;
+    transform: none !important;
+    will-change: auto;
   }
 
   .modal-real-photos {
@@ -2867,13 +2877,13 @@ body::before {
 
 @media (max-width: 760px) {
   .section-jump-nav {
-    top: 8px;
+    top: 15px;
     right: 12px;
     bottom: auto;
     flex-direction: column;
     align-items: flex-end;
     border-radius: 999px;
-    padding: 5px;
+    padding: 4px;
     z-index: 82;
   }
 
@@ -2881,10 +2891,10 @@ body::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 76px;
-    min-height: 46px;
-    padding: 0 15px;
-    font-size: 15px;
+    min-width: 62px;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
   }
 
   .section-jump-links {
@@ -2925,7 +2935,7 @@ body::before {
   .section-jump-links a:hover,
   .section-jump-links a.is-active {
     color: var(--ink);
-    background: rgba(210, 10, 17, 0.09);
+    background: rgba(16, 18, 22, 0.065);
     transform: none;
   }
 }

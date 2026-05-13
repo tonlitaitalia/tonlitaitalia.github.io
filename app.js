@@ -682,6 +682,7 @@ function openProduct(productId) {
   modalRealPhotos.innerHTML = renderRealPhotos(product);
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
+  modal.scrollTop = 0;
   modalCard.scrollTop = 0;
   document.body.style.overflow = "hidden";
   wirePremiumHover();
@@ -739,10 +740,10 @@ const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)")
 const mobileModalQuery = window.matchMedia("(max-width: 700px)");
 
 function scrollModalImageToTop() {
-  if (!mobileModalQuery.matches || !modalCard) return;
+  if (!mobileModalQuery.matches || !modal) return;
 
   window.requestAnimationFrame(() => {
-    modalCard.scrollTo({
+    modal.scrollTo({
       top: 0,
       behavior: reducedMotionQuery.matches ? "auto" : "smooth",
     });
