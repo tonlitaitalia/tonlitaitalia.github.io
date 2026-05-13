@@ -740,10 +740,10 @@ const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)")
 const mobileModalQuery = window.matchMedia("(max-width: 700px)");
 
 function scrollModalImageToTop() {
-  if (!mobileModalQuery.matches || !modal) return;
+  if (!mobileModalQuery.matches || !modalCard) return;
 
   window.requestAnimationFrame(() => {
-    modal.scrollTo({
+    modalCard.scrollTo({
       top: 0,
       behavior: reducedMotionQuery.matches ? "auto" : "smooth",
     });
