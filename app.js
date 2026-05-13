@@ -360,25 +360,6 @@ const products = [
   },
 ];
 
-const productPricing = {
-  yxc300: "a partire da € 14.000,00",
-  yxc400: "a partire da € 15.900,00",
-  yxc500: "a partire da € 22.900,00",
-  yx10: "a partire da € 1.800,00",
-  yx15: "a partire da € 2.900,00",
-  yx18: "a partire da € 4.600,00",
-  yx20: "a partire da € 6.750,00",
-  yx25: "a partire da € 11.200,00",
-  "me18-9": "a partire da € 11.500,00",
-  "me26-9": "a partire da € 17.700,00",
-  "me35-10": "a partire da € 19.500,00",
-  "me60-9": "a partire da € 26.200,00",
-  t360: "a partire da € 2.100,00",
-  t460: "a partire da € 2.650,00",
-  v800: "a partire da € 6.200,00",
-  v1000: "a partire da € 9.750,00",
-};
-
 const productOriginalImages = {
   yxc300: [
     { label: "Foto originale YXC300 1", src: "assets/catalog-photos/yxc300-1.jpg" },
@@ -579,25 +560,25 @@ const cardSpecOverrides = {
     ["Peso", "1,86 t"],
     ["Benna", "0,05 m³"],
     ["Motore", "YANMAR 3TNV74"],
-    ["Prezzo", "€ 11.500,00"],
+    ["Idraulica", "Le-HydrauliX"],
   ],
   "me26-9": [
     ["Peso", "2,9 t"],
     ["Benna", "0,08 m³"],
     ["Motore", "YANMAR 3TNV80F"],
-    ["Prezzo", "€ 17.700,00"],
+    ["Idraulica", "Le-HydrauliX"],
   ],
   "me35-10": [
     ["Peso", "3,75 t"],
     ["Benna", "0,12 m³"],
     ["Motore", "YANMAR 3TNV88F-ESSY"],
-    ["Prezzo", "€ 19.500,00"],
+    ["Idraulica", "Le-HydrauliX"],
   ],
   "me60-9": [
     ["Peso", "6 t"],
     ["Benna", "0,22 m³"],
     ["Motore", "YANMAR 4TNV98C"],
-    ["Prezzo", "€ 26.200,00"],
+    ["Idraulica", "HAWE Inline"],
   ],
   t360: [
     ["Peso", "900 kg"],
@@ -626,18 +607,16 @@ const cardSpecOverrides = {
 };
 
 function getCardSpecs(product) {
-  const specs = (cardSpecOverrides[product.id] || Object.entries(product.specs))
-    .filter(([key]) => key !== "Prezzo")
-    .slice(0, 3);
-  const price = productPricing[product.id];
-  return price ? [...specs, ["Prezzo", price]] : specs;
+  return (cardSpecOverrides[product.id] || Object.entries(product.specs))
+    .filter(([key]) => key !== "Prezzo" && key !== "Nota prezzo" && key !== "Accessori")
+    .slice(0, 4);
 }
 
 function renderProducts() {
   grid.innerHTML = products
     .map((product) => {
       const specs = getCardSpecs(product)
-        .map(([key, value]) => `<div class="spec-pill ${key === "Prezzo" ? "spec-pill-price" : ""}"><small>${key}</small><strong>${value}</strong></div>`)
+        .map(([key, value]) => `<div class="spec-pill"><small>${key}</small><strong>${value}</strong></div>`)
         .join("");
 
       return `
@@ -690,12 +669,11 @@ function openProduct(productId) {
   modalActiveImage.alt = `${images[0].label} TONLITA ${product.name}`;
   const modalSpecsEntries = [
     ...Object.entries(product.specs).filter(([key]) => key !== "Prezzo" && key !== "Nota prezzo" && key !== "Accessori"),
-    ["Prezzo", productPricing[product.id]],
     ["Condizioni", priceCondition],
   ].filter(([, value]) => Boolean(value));
 
   modalSpecs.innerHTML = modalSpecsEntries
-    .map(([key, value]) => `<div class="${key === "Prezzo" ? "modal-spec-price" : ""}"><dt>${key}</dt><dd>${value}</dd></div>`)
+    .map(([key, value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`)
     .join("");
   modalDetails.innerHTML = renderProductDetails(product);
   modalRealPhotos.innerHTML = renderRealPhotos(product);
@@ -703,13 +681,14 @@ function openProduct(productId) {
   modal.setAttribute("aria-hidden", "false");
   modalCard.scrollTop = 0;
   document.body.style.overflow = "hidden";
+  wirePremiumHover();
 }
 
 function renderProductDetails(product) {
   const details = {
     ...(product.category === "gru" ? craneDetails[product.id] || {} : {}),
     ...(product.details || {}),
-    "Prezzo e condizioni": `${productPricing[product.id]}. ${priceCondition}.`,
+    "Condizioni commerciali": `${priceCondition}. Preventivo su richiesta in base al modello e alla configurazione.`,
     "Accessori e attrezzature": accessoriesText,
   };
 
@@ -752,6 +731,9 @@ function renderRealPhotos(product) {
   `;
 }
 
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
 function closeModal() {
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
@@ -778,25 +760,192 @@ function observeReveals() {
   });
 }
 
+function getPremiumSettings(element) {
+  if (element.matches(".button, .header-cta, .product-action, .filter, .modal-tab")) {
+    return { rotate: 2.4, media: 0, scale: 1.01 };
+  }
+
+  if (element.matches(".hero-machine-stack")) {
+    return { rotate: 3.4, media: 18, scale: 1.012 };
+  }
+
+  if (element.matches(".product-card, .category-card")) {
+    return { rotate: 5.8, media: 12, scale: 1.018 };
+  }
+
+  return { rotate: 4.2, media: 7, scale: 1.012 };
+}
+
+function setPremiumPointer(element, event, settings) {
+  const rect = element.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+
+  const pointerX = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
+  const pointerY = Math.min(Math.max((event.clientY - rect.top) / rect.height, 0), 1);
+  const rotateY = (pointerX - 0.5) * settings.rotate * 2;
+  const rotateX = (0.5 - pointerY) * settings.rotate * 2;
+  const mediaX = (pointerX - 0.5) * settings.media;
+  const mediaY = (pointerY - 0.5) * settings.media * -0.7;
+
+  element.style.setProperty("--mx", `${pointerX * 100}%`);
+  element.style.setProperty("--my", `${pointerY * 100}%`);
+  element.style.setProperty("--rx", `${rotateX.toFixed(2)}deg`);
+  element.style.setProperty("--ry", `${rotateY.toFixed(2)}deg`);
+  element.style.setProperty("--premium-scale", settings.scale);
+  element.style.setProperty("--shadow-x", `${((pointerX - 0.5) * 30).toFixed(1)}px`);
+  element.style.setProperty("--shadow-y", `${(18 + pointerY * 14).toFixed(1)}px`);
+  element.style.setProperty("--media-x", `${mediaX.toFixed(1)}px`);
+  element.style.setProperty("--media-y", `${mediaY.toFixed(1)}px`);
+
+  if (element.matches(".hero-machine-stack")) {
+    element.style.setProperty("--hero-crane-x", `${(-mediaX * 0.35).toFixed(1)}px`);
+    element.style.setProperty("--hero-crane-y", `${(mediaY * 0.25).toFixed(1)}px`);
+    element.style.setProperty("--hero-excavator-x", `${(mediaX * 0.18).toFixed(1)}px`);
+    element.style.setProperty("--hero-excavator-y", `${(-mediaY * 0.24).toFixed(1)}px`);
+    element.style.setProperty("--hero-loader-x", `${(mediaX * 0.42).toFixed(1)}px`);
+    element.style.setProperty("--hero-loader-y", `${(mediaY * 0.1).toFixed(1)}px`);
+  }
+}
+
+function resetPremiumPointer(element) {
+  element.style.setProperty("--rx", "0deg");
+  element.style.setProperty("--ry", "0deg");
+  element.style.setProperty("--premium-scale", "1");
+  element.style.setProperty("--shadow-x", "0px");
+  element.style.setProperty("--shadow-y", "18px");
+  element.style.setProperty("--media-x", "0px");
+  element.style.setProperty("--media-y", "0px");
+  element.style.setProperty("--hero-crane-x", "0px");
+  element.style.setProperty("--hero-crane-y", "0px");
+  element.style.setProperty("--hero-excavator-x", "0px");
+  element.style.setProperty("--hero-excavator-y", "0px");
+  element.style.setProperty("--hero-loader-x", "0px");
+  element.style.setProperty("--hero-loader-y", "0px");
+}
+
 function wirePremiumHover() {
   const premiumElements = document.querySelectorAll(
-    ".proof-item:not(.is-hover-wired), .value-card:not(.is-hover-wired), .audience-grid article:not(.is-hover-wired), .category-card:not(.is-hover-wired), .product-card:not(.is-hover-wired), .assurance-item:not(.is-hover-wired), .support-card:not(.is-hover-wired)"
+    [
+      ".proof-item:not(.is-hover-wired)",
+      ".value-card:not(.is-hover-wired)",
+      ".audience-grid article:not(.is-hover-wired)",
+      ".category-card:not(.is-hover-wired)",
+      ".product-card:not(.is-hover-wired)",
+      ".assurance-item:not(.is-hover-wired)",
+      ".support-card:not(.is-hover-wired)",
+      ".reseller-panel:not(.is-hover-wired)",
+      ".contact-card:not(.is-hover-wired)",
+      ".quote-panel:not(.is-hover-wired)",
+      ".market-map-card:not(.is-hover-wired)",
+      ".onsite-gallery:not(.is-hover-wired)",
+      ".onsite-photo:not(.is-hover-wired)",
+      ".hero-machine-stack:not(.is-hover-wired)",
+      ".hero-metrics > div:not(.is-hover-wired)",
+      ".button:not(.is-hover-wired)",
+      ".header-cta:not(.is-hover-wired)",
+      ".product-action:not(.is-hover-wired)",
+      ".filter:not(.is-hover-wired)",
+      ".modal-tab:not(.is-hover-wired)",
+      ".real-photo:not(.is-hover-wired)",
+    ].join(", ")
   );
 
   premiumElements.forEach((element) => {
-    element.classList.add("is-hover-wired");
+    const settings = getPremiumSettings(element);
+    element.classList.add("premium-object", "is-hover-wired");
+
+    if (reducedMotionQuery.matches) return;
+
     element.addEventListener("pointermove", (event) => {
-      const rect = element.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      element.style.setProperty("--mx", `${x}%`);
-      element.style.setProperty("--my", `${y}%`);
+      if (!finePointerQuery.matches || event.pointerType !== "mouse") return;
+      setPremiumPointer(element, event, settings);
+    }, { passive: true });
+
+    element.addEventListener("pointerleave", () => {
+      element.classList.remove("is-touching");
+      resetPremiumPointer(element);
+    }, { passive: true });
+
+    element.addEventListener("pointerdown", (event) => {
+      element.classList.add("is-touching");
+      if (event.pointerType !== "mouse") {
+        element.style.setProperty("--premium-scale", "1.01");
+        element.style.setProperty("--lift", "-4px");
+      }
+    }, { passive: true });
+
+    element.addEventListener("pointerup", () => {
+      element.classList.remove("is-touching");
+      element.style.removeProperty("--lift");
+      if (!finePointerQuery.matches) resetPremiumPointer(element);
+    }, { passive: true });
+
+    element.addEventListener("pointercancel", () => {
+      element.classList.remove("is-touching");
+      element.style.removeProperty("--lift");
+      resetPremiumPointer(element);
+    }, { passive: true });
+
+    element.addEventListener("focus", () => element.classList.add("is-touching"));
+    element.addEventListener("blur", () => {
+      element.classList.remove("is-touching");
+      resetPremiumPointer(element);
     });
+  });
+}
+
+function wireSectionNav() {
+  const jumpNav = document.querySelector(".section-jump-nav");
+  if (!jumpNav) return;
+
+  const toggle = jumpNav.querySelector(".section-jump-toggle");
+  const links = [...jumpNav.querySelectorAll("[data-section-link]")];
+  const sections = links
+    .map((link) => document.getElementById(link.dataset.sectionLink))
+    .filter(Boolean);
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = jumpNav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      jumpNav.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) return;
+
+      links.forEach((link) => {
+        link.classList.toggle("is-active", link.dataset.sectionLink === visibleEntry.target.id);
+      });
+    },
+    {
+      rootMargin: "-26% 0px -58% 0px",
+      threshold: [0.08, 0.18, 0.32, 0.48],
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  document.addEventListener("click", (event) => {
+    if (!jumpNav.classList.contains("is-open") || jumpNav.contains(event.target)) return;
+    jumpNav.classList.remove("is-open");
+    toggle?.setAttribute("aria-expanded", "false");
   });
 }
 
 renderProducts();
 wirePremiumHover();
+wireSectionNav();
 
 document.addEventListener("click", (event) => {
   const productButton = event.target.closest("[data-product]");
@@ -814,6 +963,7 @@ document.addEventListener("click", (event) => {
       .forEach((button) => button.classList.toggle("is-active", button === modalImageButton || button.dataset.modalLabel === selectedLabel));
     modalActiveImage.src = modalImageButton.dataset.modalImage;
     modalActiveImage.alt = `${modalImageButton.dataset.modalLabel} TONLITA`;
+    wirePremiumHover();
   }
 
   if (closeButton) {
