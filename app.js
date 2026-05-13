@@ -649,6 +649,9 @@ function openProduct(productId) {
   const product = products.find((item) => item.id === productId);
   if (!product) return;
 
+  document.querySelector(".section-jump-nav")?.classList.remove("is-open");
+  document.querySelector(".section-jump-toggle")?.setAttribute("aria-expanded", "false");
+
   const originalImages = productOriginalImages[product.id] || [];
   modalTitle.textContent = product.name;
   modalCategory.textContent = product.label;

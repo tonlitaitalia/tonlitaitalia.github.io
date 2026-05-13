@@ -2266,8 +2266,16 @@ body.has-mobile-lead-bar .mobile-lead-bar {
 
   .map-legend {
     align-items: flex-start;
+    padding-right: 56px;
     font-size: 10px;
     letter-spacing: 0.05em;
+  }
+
+  .map-logo {
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    padding: 4px;
   }
 
   .map-source text,
@@ -2540,6 +2548,10 @@ body::before {
   transform: scaleX(1);
 }
 
+.section-jump-links a::after {
+  display: none;
+}
+
 .section-jump-nav {
   position: fixed;
   top: 92px;
@@ -2556,6 +2568,12 @@ body::before {
     radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(210, 10, 17, 0.12), transparent 34%);
   box-shadow: 0 18px 52px rgba(16, 18, 22, 0.12);
   backdrop-filter: blur(18px);
+}
+
+.modal.is-open ~ .section-jump-nav {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .section-jump-toggle {
@@ -2849,19 +2867,24 @@ body::before {
 
 @media (max-width: 760px) {
   .section-jump-nav {
-    top: 14px;
+    top: 8px;
     right: 12px;
     bottom: auto;
     flex-direction: column;
     align-items: flex-end;
     border-radius: 999px;
-    padding: 6px;
+    padding: 5px;
     z-index: 82;
   }
 
   .section-jump-toggle {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 76px;
+    min-height: 46px;
+    padding: 0 15px;
+    font-size: 15px;
   }
 
   .section-jump-links {
@@ -2871,11 +2894,12 @@ body::before {
     bottom: auto;
     display: grid;
     min-width: 168px;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid rgba(16, 18, 22, 0.1);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 18px 48px rgba(16, 18, 22, 0.18);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 48px rgba(16, 18, 22, 0.16);
+    backdrop-filter: blur(18px);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px) scale(0.96);
@@ -2891,8 +2915,18 @@ body::before {
 
   .section-jump-links a {
     justify-content: flex-start;
-    min-height: 38px;
-    padding: 0 12px;
+    min-height: 42px;
+    padding: 0 14px;
+    color: rgba(16, 18, 22, 0.7);
+    border-radius: 12px;
+    font-size: 15px;
+  }
+
+  .section-jump-links a:hover,
+  .section-jump-links a.is-active {
+    color: var(--ink);
+    background: rgba(210, 10, 17, 0.09);
+    transform: none;
   }
 }
 
