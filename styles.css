@@ -2888,7 +2888,7 @@ body::before {
 
 @media (max-width: 760px) {
   .section-jump-nav {
-    top: 8px;
+    top: 16px;
     right: 8px;
     bottom: auto;
     flex-direction: column;

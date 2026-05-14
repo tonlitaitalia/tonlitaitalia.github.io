@@ -623,7 +623,6 @@ function renderProducts() {
         <article class="product-card reveal" data-category="${product.category}">
           <div class="product-media">
             <img src="${product.image}" alt="Scheda tecnica ${product.label} TONLITA ${product.name}" loading="lazy">
-            <span class="product-badge">${product.label}</span>
           </div>
           <div class="product-body">
             <div>
