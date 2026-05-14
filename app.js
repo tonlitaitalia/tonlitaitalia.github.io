@@ -737,7 +737,19 @@ function renderRealPhotos(product) {
 
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
 const mobileModalQuery = window.matchMedia("(max-width: 700px)");
+
+function updateViewportZoomState() {
+  if (!window.visualViewport) return;
+  document.documentElement.classList.toggle("is-viewport-zooming", window.visualViewport.scale > 1.02);
+}
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", updateViewportZoomState, { passive: true });
+  window.visualViewport.addEventListener("scroll", updateViewportZoomState, { passive: true });
+  updateViewportZoomState();
+}
 
 function scrollModalImageToTop() {
   if (!mobileModalQuery.matches || !modalCard) return;
@@ -758,6 +770,13 @@ function closeModal() {
 
 function observeReveals() {
   const reveals = document.querySelectorAll(".reveal:not(.watched)");
+  if (coarsePointerQuery.matches) {
+    reveals.forEach((element) => {
+      element.classList.add("watched", "in-view");
+    });
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -840,6 +859,8 @@ function resetPremiumPointer(element) {
 }
 
 function wirePremiumHover() {
+  if (coarsePointerQuery.matches || reducedMotionQuery.matches) return;
+
   const premiumElements = document.querySelectorAll(
     [
       ".proof-item:not(.is-hover-wired)",
@@ -869,8 +890,6 @@ function wirePremiumHover() {
   premiumElements.forEach((element) => {
     const settings = getPremiumSettings(element);
     element.classList.add("premium-object", "is-hover-wired");
-
-    if (reducedMotionQuery.matches) return;
 
     element.addEventListener("pointermove", (event) => {
       if (!finePointerQuery.matches || event.pointerType !== "mouse") return;

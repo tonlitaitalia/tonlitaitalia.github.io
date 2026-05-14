@@ -2951,6 +2951,90 @@ body::before {
   }
 }
 
+@media (hover: none), (pointer: coarse), (max-width: 760px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .site-header,
+  .site-header[data-elevated="true"],
+  .section-jump-nav,
+  .section-jump-links,
+  .modal-backdrop,
+  .mobile-lead-bar {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .reveal,
+  .reveal.in-view,
+  .premium-object,
+  .reveal.premium-object,
+  .hero-machine-stack.premium-object,
+  .product-card.reveal.in-view:hover,
+  .proof-item.reveal.in-view:hover,
+  .value-card.reveal.in-view:hover,
+  .audience-grid article.reveal.in-view:hover,
+  .category-card.reveal.in-view:hover,
+  .assurance-item.reveal.in-view:hover {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition-property: opacity, background, border-color, box-shadow, color !important;
+    will-change: auto !important;
+  }
+
+  .product-card:hover,
+  .category-card:hover,
+  .value-card:hover,
+  .assurance-item:hover,
+  .audience-grid article:hover,
+  .real-photo:hover,
+  .modal-tab:hover {
+    transform: none !important;
+  }
+
+  .product-media img,
+  .modal-media img,
+  .real-photo img,
+  .hero-machine,
+  .hero-machine-stack.premium-object .hero-machine,
+  .onsite-photo img,
+  .onsite-photo-main img,
+  .company-logo-mini,
+  .map-logo,
+  .map-source,
+  .map-pins {
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .modal-card {
+    animation: none !important;
+  }
+}
+
+html.is-viewport-zooming *,
+html.is-viewport-zooming *::before,
+html.is-viewport-zooming *::after {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+html.is-viewport-zooming .premium-object,
+html.is-viewport-zooming .hero-machine-stack,
+html.is-viewport-zooming .hero-machine,
+html.is-viewport-zooming .product-media img,
+html.is-viewport-zooming .modal-media img,
+html.is-viewport-zooming .real-photo img {
+  transform: none !important;
+  filter: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
