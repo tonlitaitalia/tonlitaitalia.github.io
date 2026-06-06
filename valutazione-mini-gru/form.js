@@ -17,9 +17,9 @@
   let currentStep = 1;
 
   const summaryFields = [
-    ["Cliente", ["Nome e cognome", "Azienda / Ragione sociale"]],
+    ["Cliente", ["Nome e cognome"]],
     ["Telefono", ["Telefono / WhatsApp"]],
-    ["Paese/Città", ["Paese cliente", "Città / provincia cliente"]],
+    ["Città", ["Città / provincia cliente"]],
     ["Modello indicativo", ["Modello Tonlita indicativo"]],
     ["Settore", ["Settore attività[]"]],
     ["Lavoro", ["Tipo di lavori principali[]"]],
@@ -40,10 +40,8 @@
       title: "STEP 1 - Dati cliente",
       names: [
         "Nome e cognome",
-        "Azienda / Ragione sociale",
         "Email",
         "Telefono / WhatsApp",
-        "Paese cliente",
         "Città / provincia cliente",
         "Settore attività[]",
         "Hai già parlato con noi?"
