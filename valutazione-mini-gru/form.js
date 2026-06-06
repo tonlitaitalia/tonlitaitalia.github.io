@@ -30,8 +30,8 @@
     ["Metodo attuale", ["Metodo attuale sollevamenti[]"]],
     ["Problema principale", ["Problema principale oggi[]"]],
     ["Accessori richiesti", ["Accessori o configurazioni richieste[]"]],
-    ["Tempi", ["Tempistica richiesta", "Disponibilità attesa produzione importazione"]],
-    ["Consegna", ["Paese consegna", "Città consegna", "Provincia / regione consegna"]],
+    ["Tempi", ["Disponibilità attesa 75-90 giorni"]],
+    ["Consegna", ["Città consegna", "Provincia / regione consegna", "CAP consegna"]],
     ["Budget", ["Budget indicativo"]]
   ];
 
@@ -62,8 +62,7 @@
         "Peso più frequente dei carichi",
         "Distanza dalla macchina",
         "Altezza richiesta[]",
-        "Ostacoli durante il sollevamento[]",
-        "Esempio concreto di sollevamento"
+        "Ostacoli durante il sollevamento[]"
       ]
     },
     {
@@ -88,9 +87,7 @@
     {
       title: "STEP 6 - Tempi, consegna e richiesta finale",
       names: [
-        "Tempistica richiesta",
-        "Disponibilità attesa produzione importazione",
-        "Paese consegna",
+        "Disponibilità attesa 75-90 giorni",
         "Città consegna",
         "Provincia / regione consegna",
         "CAP consegna",

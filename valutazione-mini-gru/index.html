@@ -232,10 +232,6 @@
                 <label><input type="checkbox" name="Ostacoli durante il sollevamento[]" value="Non lo so" /> Non lo so</label>
               </div>
             </fieldset>
-
-            <label>Descrivi un esempio concreto di sollevamento
-              <textarea name="Esempio concreto di sollevamento" placeholder="Esempio: trave da 800 kg da portare al secondo piano, macchina piazzata a circa 5 metri dal punto di posa."></textarea>
-            </label>
           </section>
 
           <section class="form-step" data-step="4" aria-labelledby="step-4-title">
@@ -370,29 +366,19 @@
           <section class="form-step" data-step="6" aria-labelledby="step-6-title">
             <p class="eyebrow">Step 6</p>
             <h2 id="step-6-title">Tempi, consegna e richiesta finale</h2>
-            <fieldset data-required-group="Tempistica richiesta">
-              <legend>Quando ti servirebbe la macchina?</legend>
-              <div class="choice-grid compact">
-                <label><input type="radio" name="Tempistica richiesta" value="Il prima possibile" /> Il prima possibile</label>
-                <label><input type="radio" name="Tempistica richiesta" value="Entro 1 mese" /> Entro 1 mese</label>
-                <label><input type="radio" name="Tempistica richiesta" value="Entro 2–3 mesi" /> Entro 2–3 mesi</label>
-                <label><input type="radio" name="Tempistica richiesta" value="Posso aspettare 75/90 giorni" /> Posso aspettare 75/90 giorni</label>
-                <label><input type="radio" name="Tempistica richiesta" value="Nessuna urgenza" /> Nessuna urgenza</label>
-              </div>
-            </fieldset>
+            <p class="step-note">Le mini gru vengono configurate e preparate su richiesta. In genere i tempi complessivi di produzione e consegna sono circa 75-90 giorni.</p>
 
-            <fieldset data-required-group="Disponibilità attesa produzione importazione">
-              <legend>Se il prezzo è più competitivo, sei disponibile ad attendere produzione e importazione dalla Cina?</legend>
+            <fieldset data-required-group="Disponibilità attesa 75-90 giorni">
+              <legend>Puoi attendere i tempi di produzione e consegna, circa 75-90 giorni?</legend>
               <div class="choice-grid compact">
-                <label><input type="radio" name="Disponibilità attesa produzione importazione" value="Sì" /> Sì</label>
-                <label><input type="radio" name="Disponibilità attesa produzione importazione" value="No, mi serve pronta consegna" /> No, mi serve pronta consegna</label>
-                <label><input type="radio" name="Disponibilità attesa produzione importazione" value="Dipende dal risparmio" /> Dipende dal risparmio</label>
-                <label><input type="radio" name="Disponibilità attesa produzione importazione" value="Voglio capire meglio" /> Voglio capire meglio</label>
+                <label><input type="radio" name="Disponibilità attesa 75-90 giorni" value="Sì, posso attendere circa 75-90 giorni" /> Sì, posso attendere circa 75-90 giorni</label>
+                <label><input type="radio" name="Disponibilità attesa 75-90 giorni" value="No, mi serve una macchina in pronta consegna" /> No, mi serve pronta consegna</label>
+                <label><input type="radio" name="Disponibilità attesa 75-90 giorni" value="Dipende dal prezzo e dalla configurazione" /> Dipende dal prezzo e dalla configurazione</label>
+                <label><input type="radio" name="Disponibilità attesa 75-90 giorni" value="Voglio capire meglio" /> Voglio capire meglio</label>
               </div>
             </fieldset>
 
             <div class="field-grid">
-              <label>Paese consegna <input required name="Paese consegna" autocomplete="country-name" /></label>
               <label>Città consegna <input required name="Città consegna" /></label>
               <label>Provincia / regione <input required name="Provincia / regione consegna" /></label>
               <label>CAP se disponibile <input name="CAP consegna" inputmode="numeric" /></label>
@@ -410,12 +396,11 @@
             <fieldset data-required-group="Budget indicativo">
               <legend>Budget indicativo</legend>
               <div class="choice-grid compact">
-                <label><input type="radio" name="Budget indicativo" value="Meno di 10.000 €" /> Meno di 10.000 €</label>
                 <label><input type="radio" name="Budget indicativo" value="10.000–20.000 €" /> 10.000–20.000 €</label>
-                <label><input type="radio" name="Budget indicativo" value="20.000–40.000 €" /> 20.000–40.000 €</label>
-                <label><input type="radio" name="Budget indicativo" value="40.000–80.000 €" /> 40.000–80.000 €</label>
-                <label><input type="radio" name="Budget indicativo" value="Oltre 80.000 €" /> Oltre 80.000 €</label>
-                <label><input type="radio" name="Budget indicativo" value="Preferisco non indicarlo" /> Preferisco non indicarlo</label>
+                <label><input type="radio" name="Budget indicativo" value="20.000–30.000 €" /> 20.000–30.000 €</label>
+                <label><input type="radio" name="Budget indicativo" value="30.000–40.000 €" /> 30.000–40.000 €</label>
+                <label><input type="radio" name="Budget indicativo" value="40.000–50.000 €" /> 40.000–50.000 €</label>
+                <label><input type="radio" name="Budget indicativo" value="50.000–60.000 €" /> 50.000–60.000 €</label>
               </div>
             </fieldset>
 
