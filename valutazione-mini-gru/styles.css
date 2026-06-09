@@ -578,6 +578,44 @@ fieldset.has-error {
   box-shadow: 0 18px 38px rgba(210, 15, 15, 0.22);
 }
 
+.success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 24px;
+  border: 1px solid rgba(16, 19, 24, 0.16);
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 900;
+  line-height: 1.14;
+  text-align: center;
+  text-decoration: none;
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(16, 19, 24, 0.08);
+}
+
+body.is-success .hero,
+body.is-success .bottom-note,
+body.is-success .calendly-section {
+  display: none;
+}
+
+body.is-success .form-shell {
+  padding-top: clamp(28px, 7vw, 64px);
+}
+
+body.is-success .success-panel {
+  display: block;
+}
+
 @media (max-width: 679px) {
   .calendly-section {
     margin-bottom: 68px;
@@ -591,6 +629,16 @@ fieldset.has-error {
     display: inline-flex;
     width: 100%;
     white-space: normal;
+  }
+
+  .success-actions {
+    display: grid;
+    gap: 10px;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+    padding: 0 18px;
   }
 }
 

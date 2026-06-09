@@ -221,10 +221,12 @@
 
   function showSuccessIfNeeded() {
     if (new URLSearchParams(window.location.search).get("success") === "1") {
+      document.body.classList.add("is-success");
       successPanel.hidden = false;
       form.hidden = true;
-      document.querySelector(".progress-card").hidden = true;
-      successPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      const progressCard = document.querySelector(".progress-card");
+      if (progressCard) progressCard.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
