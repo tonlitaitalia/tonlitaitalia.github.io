@@ -328,7 +328,7 @@ fieldset {
 
 legend {
   margin-bottom: 12px;
-  color: #20262e;
+  color: var(--red-dark);
   font-size: 1.02rem;
   font-weight: 900;
 }
@@ -336,7 +336,7 @@ legend {
 .field-grid label,
 .form-step > label,
 .file-box {
-  color: #4b5563;
+  color: var(--red-dark);
   font-size: 0.88rem;
   font-weight: 900;
   letter-spacing: 0.02em;
@@ -521,6 +521,9 @@ fieldset.has-error {
   position: relative;
   overflow: hidden;
   padding: clamp(22px, 5vw, 42px);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(210, 15, 15, 0.11), transparent 36%),
+    rgba(255, 255, 255, 0.96);
 }
 
 .calendly-card::before {
@@ -568,6 +571,8 @@ fieldset.has-error {
   border-radius: 8px;
   color: #fff;
   font-weight: 900;
+  line-height: 1.14;
+  text-align: center;
   text-decoration: none;
   background: linear-gradient(135deg, var(--red), var(--red-dark));
   box-shadow: 0 18px 38px rgba(210, 15, 15, 0.22);
@@ -585,6 +590,7 @@ fieldset.has-error {
   .calendly-button {
     display: inline-flex;
     width: 100%;
+    white-space: normal;
   }
 }
 
@@ -663,6 +669,15 @@ fieldset.has-error {
   .success-panel,
   .calendly-card {
     padding: 20px 16px;
+  }
+
+  .calendly-card h2,
+  .calendly-card h3 {
+    font-size: clamp(2.05rem, 10vw, 2.8rem);
+  }
+
+  .calendly-card p:not(.eyebrow) {
+    font-size: 1rem;
   }
 
   .choice-grid label,
