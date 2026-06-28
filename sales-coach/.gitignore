@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.dev.vars
+admin-create.sql
+.wrangler/
+*.local

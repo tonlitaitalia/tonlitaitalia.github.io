@@ -1,0 +1,20 @@
+ZERO_BILLING_MODE=true
+AI_PROVIDER=cloudflare
+MAX_ACTIVE_SELLERS=5
+SELLER_DAILY_AI_REQUEST_LIMIT=50
+GLOBAL_DAILY_AI_REQUEST_LIMIT=250
+ALLOW_PAID_AI_FALLBACK=false
+ALLOW_AUTOMATIC_RETRIES_AFTER_QUOTA_ERROR=false
+QUOTA_TIMEZONE=Asia/Shanghai
+SESSION_TTL_SECONDS=28800
+MAX_ATTACHMENTS_PER_ANALYSIS=5
+MAX_ATTACHMENT_SIZE_MB=10
+MAX_TOTAL_UPLOAD_SIZE_MB=20
+MAX_PDF_PAGES=25
+COOKIE_SECRET=replace-with-64-character-random-secret
+
+# Admin creation script variables. Set these in Terminal only when running:
+# pnpm run admin:create -- --sql-only
+# ADMIN_EMAIL=admin@example.com
+# ADMIN_PASSWORD=replace-with-long-temporary-password
+# ADMIN_NAME=Tonlita Administrator

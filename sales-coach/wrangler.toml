@@ -1,0 +1,24 @@
+name = "tonlita-sales-coach"
+compatibility_date = "2026-06-24"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tonlita_sales_coach"
+database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[vars]
+ZERO_BILLING_MODE = "true"
+AI_PROVIDER = "cloudflare"
+MAX_ACTIVE_SELLERS = "5"
+SELLER_DAILY_AI_REQUEST_LIMIT = "50"
+GLOBAL_DAILY_AI_REQUEST_LIMIT = "250"
+ALLOW_PAID_AI_FALLBACK = "false"
+ALLOW_AUTOMATIC_RETRIES_AFTER_QUOTA_ERROR = "false"
+QUOTA_TIMEZONE = "Asia/Shanghai"
+SESSION_TTL_SECONDS = "28800"
+MAX_ATTACHMENTS_PER_ANALYSIS = "5"
+MAX_ATTACHMENT_SIZE_MB = "10"
+MAX_TOTAL_UPLOAD_SIZE_MB = "20"
+MAX_PDF_PAGES = "25"
