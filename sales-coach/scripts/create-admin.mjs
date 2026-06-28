@@ -11,7 +11,7 @@ if (!email || !password) {
 }
 
 const salt = randomUUID();
-const hash = pbkdf2Sync(password, salt, 210000, 32, "sha256").toString("hex");
+const hash = pbkdf2Sync(password, salt, 100000, 32, "sha256").toString("hex");
 const id = `user_${randomUUID()}`;
 
 const sql = `
