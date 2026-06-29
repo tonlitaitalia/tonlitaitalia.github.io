@@ -573,7 +573,7 @@ async function callCloudflareAi(env: Env, payload: Record<string, unknown>) {
     "risk_chinese",
     "likely_customer_reaction"
   ];
-  const response = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+  const response = await env.AI.run("@cf/zai-org/glm-4.7-flash", {
     messages: [
       {
         role: "system",
