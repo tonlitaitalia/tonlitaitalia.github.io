@@ -8,6 +8,9 @@ database_name = "tonlita_sales_coach"
 database_id = "832eb3c7-2417-471d-ba5d-29e8ccea0286"
 migrations_dir = "migrations"
 
+[ai]
+binding = "AI"
+
 [vars]
 ZERO_BILLING_MODE = "true"
 AI_PROVIDER = "cloudflare"
