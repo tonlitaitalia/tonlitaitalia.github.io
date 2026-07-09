@@ -512,6 +512,10 @@ fieldset.has-error {
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
+.form-actions button[hidden] {
+  display: none !important;
+}
+
 .form-actions button.secondary {
   color: var(--ink);
   border: 1px solid var(--line);
