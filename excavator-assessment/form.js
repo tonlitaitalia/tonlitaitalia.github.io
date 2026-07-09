@@ -74,9 +74,9 @@ function validateStep() {
 
 function buildSummary() {
   const fullName = getValues('Full name');
-  const model = getValues('Indicative model') || 'Not specified';
+  const weightClass = getValues('Desired weight class') || 'Not specified';
 
-  subjectInput.value = `New excavator request - ${fullName || 'Customer'} - ${model}`;
+  subjectInput.value = `New excavator request - ${fullName || 'Customer'} - ${weightClass}`;
 
   const lines = [
     'REQUEST SUMMARY',
@@ -87,12 +87,12 @@ function buildSummary() {
     `Business sector: ${getValues('Business sector')}`,
     `Previous contact: ${getValues('Previous contact')}`,
     '',
-    `Indicative model: ${model}`,
+    `Desired weight class: ${weightClass}`,
     `Main work: ${getValues('Main work')}`,
     `Usage frequency: ${getValues('Usage frequency')}`,
     '',
     `Required digging depth: ${getValues('Required digging depth')}`,
-    `Operating weight class: ${getValues('Operating weight class')}`,
+    `Compact size requirement: ${getValues('Compact size requirement')}`,
     `Bucket / attachment use: ${getValues('Bucket / attachment use')}`,
     `Auxiliary hydraulics: ${getValues('Auxiliary hydraulics')}`,
     '',

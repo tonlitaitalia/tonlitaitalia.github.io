@@ -74,9 +74,9 @@ function validateStep() {
 
 function buildSummary() {
   const fullName = getValues('Full name');
-  const model = getValues('Indicative model') || 'Not specified';
+  const liftingCapacity = getValues('Indicative lifting capacity') || 'Not specified';
 
-  subjectInput.value = `New spider crane request - ${fullName || 'Customer'} - ${model}`;
+  subjectInput.value = `New spider crane request - ${fullName || 'Customer'} - ${liftingCapacity}`;
 
   const lines = [
     'REQUEST SUMMARY',
@@ -87,7 +87,7 @@ function buildSummary() {
     `Business sector: ${getValues('Business sector')}`,
     `Previous contact: ${getValues('Previous contact')}`,
     '',
-    `Indicative model: ${model}`,
+    `Indicative lifting capacity: ${liftingCapacity}`,
     `Main work: ${getValues('Main work')}`,
     `Usage frequency: ${getValues('Usage frequency')}`,
     '',
